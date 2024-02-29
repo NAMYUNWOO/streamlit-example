@@ -90,16 +90,16 @@ charnamesList = list(source['캐릭터'].unique())
 colorsList = ['firebrick', 'steelblue', 'chartreuse', '#F4D03F', '#D35400', '#7D3C98'][:len(charnamesList)]
 
 bars = alt.Chart(source).mark_bar().encode(
-    x=alt.X('sum(스탯율):Q').stack('zero'),
+    x=alt.X('스탯율:Q').stack('zero'),
     y=alt.Y('스탯명:N'),
     color=alt.Color('캐릭터').scale(domain=charnamesList, range=colorsList)
 )
 
 text = alt.Chart(source).mark_text(dx=-15, dy=3, color='white').encode(
-    x=alt.X('sum(스탯율):Q').stack('zero'),
+    x=alt.X('스탯율:Q').stack('zero'),
     y=alt.Y('스탯명:N'),
     detail='캐릭터:N',
-    text=alt.Text('sum(스탯):Q', format='.1f')
+    text=alt.Text('스탯:Q', format='.1f')
 )
 
 
