@@ -26,7 +26,7 @@ response_ocid = requests.get(urlString_ocid, headers = headers)
 
 ocid = response_ocid.json()['ocid']
 
-urlString_stat = 'https://open.api.nexon.com/maplestory/v1/character/stat?ocid={}&date={}'.format(ocid,datetime.now().strftime('%Y-%m-%d'))
+urlString_stat = 'https://open.api.nexon.com/maplestory/v1/character/stat?ocid={}&date={}'.format(ocid,(datetime.now()-timedelta(days=1)).strftime('%Y-%m-%d'))
 
 response_stat = requests.get(urlString_stat, headers = headers)
 
