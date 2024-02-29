@@ -87,7 +87,7 @@ source = pd.concat([df11,
            )
 
 charnamesList = list(source['캐릭터'].unique())
-colorsList = ['red', 'steelblue', 'chartreuse', '#F4D03F', '#D35400', '#7D3C98'][:len(charnamesList)]
+colorsList = ['firebrick', 'steelblue', 'chartreuse', '#F4D03F', '#D35400', '#7D3C98'][:len(charnamesList)]
 
 bars = alt.Chart(source).mark_bar().encode(
     x=alt.X('sum(스탯율):Q').stack('zero'),
