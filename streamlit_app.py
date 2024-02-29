@@ -58,7 +58,8 @@ if characterName2 and (characterName2 != "캐릭터명을 입력하고 엔터"):
 
 charClass1 = charInfo1.get('character_class','not_known')
 charClass2 = charInfo2.get('character_class','not_known')
-
+st.write(charInfo1)
+st.write(charInfo2)
 
 df1,df2 = (pd.DataFrame([{'스탯':stringToFloat(i['stat_value']),'스탯명':i['stat_name'].strip(),'캐릭터':characterName}  for i in charInfo1.get('final_stat',[{'stat_name':"dummy",'stat_value':'0.0'}])]),
            pd.DataFrame([{'스탯':stringToFloat(i['stat_value']),'스탯명':i['stat_name'].strip(),'캐릭터':characterName2}  for i in charInfo2.get('final_stat',[{'stat_name':"dummy",'stat_value':'0.0'}])])
