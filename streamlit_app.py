@@ -25,3 +25,5 @@ if characterName and (characterName != "캐릭터명을 입력하세요."):
     else:
         st.write("캐릭터명 '{}' 를 찾지 못했습니다.".format(characterName))
 
+st.divider()
+st.caption('Data based on NEXON Open API')
