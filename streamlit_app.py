@@ -60,8 +60,8 @@ charClass1 = charInfo1.get('character_class','not_known')
 charClass2 = charInfo2.get('character_class','not_known')
 
 
-df1,df2 = (pd.DataFrame([{'스탯':stringToFloat(i['stat_value']),'스탯명':i['stat_name'].strip(),'캐릭터':characterName}  for i in charInfo1.get('final_stat',[{'stat_name':"",'stat_value':'0.0'}])]),
-           pd.DataFrame([{'스탯':stringToFloat(i['stat_value']),'스탯명':i['stat_name'].strip(),'캐릭터':characterName2}  for i in charInfo2.get('final_stat',[{'stat_name':"",'stat_value':'0.0'}])])
+df1,df2 = (pd.DataFrame([{'스탯':stringToFloat(i['stat_value']),'스탯명':i['stat_name'].strip(),'캐릭터':characterName}  for i in charInfo1.get('final_stat',[{'stat_name':"dummy",'stat_value':'0.0'}])]),
+           pd.DataFrame([{'스탯':stringToFloat(i['stat_value']),'스탯명':i['stat_name'].strip(),'캐릭터':characterName2}  for i in charInfo2.get('final_stat',[{'stat_name':"dummy",'stat_value':'0.0'}])])
            )
 df12 = pd.merge(df1,df2, on=['스탯명'],how='outer').fillna({'스탯_x':0.0,'스탯_y':0.0})
 if len(df12) == 0:
