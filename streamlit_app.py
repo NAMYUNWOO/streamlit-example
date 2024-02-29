@@ -11,10 +11,11 @@ headers = {
   "x-nxopen-api-key": api_key
 }
 col1, col2 = st.columns(2)
+
 with col1:
-    characterName = st.text_input(label='캐릭터명', value='캐릭터명을 입력하세요.')
+    characterName = st.text_input(label='캐릭터명1', value='캐릭터명을 입력하세요.')
 with col2:
-    characterName2 = st.text_input(label='캐릭터명', value='캐릭터명을 입력하세요.')    
+    characterName2 = st.text_input(label='캐릭터명2', value='캐릭터명을 입력하세요.')    
 
 """
 characterName = st.text_input(label='캐릭터명', value='캐릭터명을 입력하세요.')
