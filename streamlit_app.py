@@ -5,6 +5,12 @@ import streamlit as st
 import requests
 from datetime import datetime,timedelta
 
+def stringToFloat(mystr):
+    try:
+        return float(mystr.strip())
+    except:
+        return 0.0
+
 
 def getCharInfo(characterName):
     charInfo1 = dict()
@@ -49,8 +55,47 @@ if characterName2 and (characterName2 != "캐릭터명을 입력하세요."):
     charInfo2 = getCharInfo(characterName2)    
 
 
-st.write(charInfo1)
-st.write(charInfo2)
+
+charClass1 = charInfo1.get('character_class','not_known')
+charClass2 = charInfo2.get('character_class','not_known')
+
+
+df1,df2 = (pd.DataFrame([{'스탯':stringToFloat(i['stat_value']),'스탯명':i['stat_name'].strip(),'캐릭터':characterName}  for i in charInfo1.get('final_stat',[])]),
+           pd.DataFrame([{'스탯':stringToFloat(i['stat_value']),'스탯명':i['stat_name'].strip(),'캐릭터':characterName2}  for i in charInfo2.get('final_stat',[])])
+           )
+df12 = pd.merge(df1,df2, on=['스탯명'],how='outer').fillna({'스탯_x':0.0,'스탯_y':0.0})
+df12['스탯율_x'] = [ i/(i+j) if (i+j) != 0.0 else 0.0 for i,j in zip(df12['스탯_x'],df12['스탯_y'])]
+df12['스탯율_y'] = [ j/(i+j) if (i+j) != 0.0 else 0.0 for i,j in zip(df12['스탯_x'],df12['스탯_y'])]
+df11 = df12[['스탯율_x','스탯_x','스탯명','캐릭터_x']]
+df22 = df12[['스탯율_y','스탯_y','스탯명','캐릭터_y']]
+df11.columns = [i.replace('_x','') for i in  df11.columns]
+df22.columns = [i.replace('_y','') for i in  df22.columns]
+df11['캐릭터'] = [df11['캐릭터'].dropna().iloc[0]] * len(df11)
+df22['캐릭터'] = [df22['캐릭터'].dropna().iloc[0]] * len(df11)
+source = pd.concat([df11,
+                df22
+               ],
+
+              axis = 0
+           )
+
+bars = alt.Chart(source).mark_bar().encode(
+    x=alt.X('sum(스탯율):Q').stack('zero'),
+    y=alt.Y('스탯명:N'),
+    color=alt.Color('캐릭터')
+)
+
+text = alt.Chart(source).mark_text(dx=-15, dy=3, color='white').encode(
+    x=alt.X('sum(스탯):Q').stack('zero'),
+    y=alt.Y('스탯명:N'),
+    detail='캐릭터:N',
+    text=alt.Text('sum(스탯):Q', format='.1f')
+)
+
+
+st.altair_chart(bars + text, use_container_width=True)
+#st.write(charInfo1)
+#st.write(charInfo2)
 
 
 
