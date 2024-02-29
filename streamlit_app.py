@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import requests
-import datetime
+from datetime import datetime
 
 """
 test from namyunwoo
@@ -21,8 +21,14 @@ headers = {
 }
 
 characterName = "아델"
-urlString = "https://open.api.nexon.com/maplestory/v1/id?character_name=" + characterName
-response = requests.get(urlString, headers = headers)
+urlString_ocid = "https://open.api.nexon.com/maplestory/v1/id?character_name=" + characterName
+response_ocid = requests.get(urlString_ocid, headers = headers)
 
-st.write(str(response.json()))
+ocid = response_ocid.json()['ocid']
+
+urlString_stat = 'https://open.api.nexon.com/maplestory/v1/character/stat?ocid={}&date={}'.format(ocid,datetime.now().strftime('%Y-%m-%d'))
+
+response_stat = requests.get(urlString_stat, headers = headers)
+
+st.write(response_stat.json())
 
