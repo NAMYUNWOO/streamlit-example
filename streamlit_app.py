@@ -10,7 +10,7 @@ api_key = st.secrets['NEXON_API_KEY']
 headers = {
   "x-nxopen-api-key": api_key
 }
-characterName = st.text_input('캐릭터명', '캐릭터명을 입력하세요.')
+characterName = st.text_input(label='캐릭터명', value='캐릭터명을 입력하세요.')
 if characterName and (characterName != "캐릭터명을 입력하세요."):
     urlString_ocid = "https://open.api.nexon.com/maplestory/v1/id?character_name=" + characterName
     response_ocid = requests.get(urlString_ocid, headers = headers)
