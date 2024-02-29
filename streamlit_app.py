@@ -34,10 +34,10 @@ widget_id = (id for id in range(1, 100_00))
 
 col1, col2 = st.columns(2)
 with col1:
-    characterName = st.text_input(label='캐릭터명1', value='캐릭터명을 입력하세요.', key=next(widget_id))
+    characterName = st.text_input(label='캐릭터명1', placeholder ='캐릭터명을 입력하고 엔터', key=next(widget_id))
 
 with col2:
-    characterName2 = st.text_input(label='캐릭터명2', value='캐릭터명을 입력하세요.', key=next(widget_id))    
+    characterName2 = st.text_input(label='캐릭터명2', placeholder ='캐릭터명을 입력하고 엔터', key=next(widget_id))    
 
 
 charInfo1 = dict()
