@@ -21,7 +21,6 @@ headers = {
 }
 
 characterName = "아델"
-/maplestory/v1/character/stat
 urlString = "https://open.api.nexon.com/maplestory/v1/id?character_name=" + characterName
 response = requests.get(urlString, headers = headers)
 
