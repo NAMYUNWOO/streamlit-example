@@ -18,7 +18,7 @@ with col1:
     characterName = st.text_input(label='캐릭터명', value='캐릭터명을 입력하세요.', key=next(widget_id))
 
 with col2:
-    characterName2 = st.text_input(label='캐릭터명', value='캐릭터명을 입력하세요.', key=next(widget_id))    
+    characterName2 = st.text_input(label='캐릭터명2', value='캐릭터명을 입력하세요.', key=next(widget_id))    
 
 """
 characterName = st.text_input(label='캐릭터명', value='캐릭터명을 입력하세요.')
