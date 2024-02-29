@@ -20,7 +20,7 @@ if characterName and (characterName != "캐릭터명을 입력하세요."):
         urlString_stat = 'https://open.api.nexon.com/maplestory/v1/character/stat?ocid={}&date={}'.format(ocid,(datetime.now()-timedelta(days=1)).strftime('%Y-%m-%d'))
 
         response_stat = requests.get(urlString_stat, headers = headers)
-
+        st.write(datetime.now())
         st.write(response_stat.json())
     else:
         st.write("캐릭터명 '{}' 를 찾지 못했습니다.".format(characterName))
