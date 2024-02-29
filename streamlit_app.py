@@ -19,10 +19,9 @@ headers = {
   "x-nxopen-api-key": api_key
 }
 
-# characterName = "아델"
-# urlString = "https://open.api.nexon.com/heroes/v1/id?character_name=" + characterName
-# response = requests.get(urlString, headers = headers)
+characterName = "아델"
+urlString = "https://open.api.nexon.com/heroes/v1/id?character_name=" + characterName
+response = requests.get(urlString, headers = headers)
 
-#st.write(str(response.json()))
+st.write(str(response.json()))
 
-st.write(api_key)
