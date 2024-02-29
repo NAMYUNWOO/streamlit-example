@@ -5,9 +5,7 @@ import streamlit as st
 import requests
 from datetime import datetime,timedelta
 
-"""
-#yunu
-"""
+st.title("🍁")
 api_key = st.secrets['NEXON_API_KEY']
 headers = {
   "x-nxopen-api-key": api_key
