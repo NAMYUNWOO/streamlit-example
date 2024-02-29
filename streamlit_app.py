@@ -10,18 +10,16 @@ api_key = st.secrets['NEXON_API_KEY']
 headers = {
   "x-nxopen-api-key": api_key
 }
-title = st.text_input('Movie title', 'Life of Brian')
-st.write('The current movie title is', title)
+characterName = st.text_input('캐릭터명', '캐릭터명')
+if characterName:
+    urlString_ocid = "https://open.api.nexon.com/maplestory/v1/id?character_name=" + characterName
+    response_ocid = requests.get(urlString_ocid, headers = headers)
 
-characterName = "아델"
-urlString_ocid = "https://open.api.nexon.com/maplestory/v1/id?character_name=" + characterName
-response_ocid = requests.get(urlString_ocid, headers = headers)
+    ocid = response_ocid.json()['ocid']
 
-ocid = response_ocid.json()['ocid']
+    urlString_stat = 'https://open.api.nexon.com/maplestory/v1/character/stat?ocid={}&date={}'.format(ocid,(datetime.now()-timedelta(days=1)).strftime('%Y-%m-%d'))
 
-urlString_stat = 'https://open.api.nexon.com/maplestory/v1/character/stat?ocid={}&date={}'.format(ocid,(datetime.now()-timedelta(days=1)).strftime('%Y-%m-%d'))
+    response_stat = requests.get(urlString_stat, headers = headers)
 
-response_stat = requests.get(urlString_stat, headers = headers)
-
-st.write(response_stat.json())
+    st.write(response_stat.json())
 
