@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import requests
+import datetime
 
 """
 test from namyunwoo
@@ -20,7 +21,8 @@ headers = {
 }
 
 characterName = "아델"
-urlString = "https://open.api.nexon.com/heroes/v1/id?character_name=" + characterName
+/maplestory/v1/character/stat
+urlString = "https://open.api.nexon.com/maplestory/v1/id?character_name=" + characterName
 response = requests.get(urlString, headers = headers)
 
 st.write(str(response.json()))
