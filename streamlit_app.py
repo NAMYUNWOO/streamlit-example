@@ -58,6 +58,12 @@ if characterName2 and (characterName2 != "캐릭터명을 입력하고 엔터"):
 
 charClass1 = charInfo1.get('character_class','not_known')
 charClass2 = charInfo2.get('character_class','not_known')
+col3, col4 = st.columns(2)
+with col3:
+    st.write("직업: {}".format(charClass1),key=next(widget_id))
+
+with col4:
+    st.write("직업: {}".format(charClass2),key=next(widget_id))
 
 df1,df2 = (pd.DataFrame([{'스탯':stringToFloat(i['stat_value']),'스탯명':i['stat_name'].strip(),'캐릭터':characterName}  for i in charInfo1.get('final_stat',[{'stat_name':"dummy",'stat_value':'0.0'}])]),
            pd.DataFrame([{'스탯':stringToFloat(i['stat_value']),'스탯명':i['stat_name'].strip(),'캐릭터':characterName2}  for i in charInfo2.get('final_stat',[{'stat_name':"dummy",'stat_value':'0.0'}])])
@@ -77,15 +83,17 @@ df11 = df12[['스탯율_x','스탯_x','스탯명','캐릭터_x']]
 df22 = df12[['스탯율_y','스탯_y','스탯명','캐릭터_y']]
 df11.columns = [i.replace('_x','') for i in  df11.columns]
 df22.columns = [i.replace('_y','') for i in  df22.columns]
+df11.index = range(len(df11))
+df22.index = range(len(df22))
 df11['캐릭터'] = [df11['캐릭터'].dropna().iloc[0]] * len(df11)
-df22['캐릭터'] = [df22['캐릭터'].dropna().iloc[0]] * len(df11)
+df22['캐릭터'] = [df22['캐릭터'].dropna().iloc[0]] * len(df22)
 source = pd.concat([df11,
                 df22
                ],
 
               axis = 0
            )
-
+source.index= range(len(source))
 charnamesList = list(source['캐릭터'].unique())
 colorsList = ['firebrick', 'steelblue', 'chartreuse', '#F4D03F', '#D35400', '#7D3C98'][:len(charnamesList)]
 
