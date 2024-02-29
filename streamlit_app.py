@@ -10,12 +10,15 @@ api_key = st.secrets['NEXON_API_KEY']
 headers = {
   "x-nxopen-api-key": api_key
 }
+widget_id = (id for id in range(1, 100_00))
+
 col1, col2 = st.columns(2)
 
 with col1:
-    characterName = st.text_input(label='캐릭터명1', value='캐릭터명을 입력하세요.')
+    characterName = st.text_input(label='캐릭터명', value='캐릭터명을 입력하세요.', key=next(widget_id))
+
 with col2:
-    characterName2 = st.text_input(label='캐릭터명2', value='캐릭터명을 입력하세요.')    
+    characterName2 = st.text_input(label='캐릭터명', value='캐릭터명을 입력하세요.', key=next(widget_id))    
 
 """
 characterName = st.text_input(label='캐릭터명', value='캐릭터명을 입력하세요.')
