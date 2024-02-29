@@ -10,6 +10,8 @@ api_key = st.secrets['NEXON_API_KEY']
 headers = {
   "x-nxopen-api-key": api_key
 }
+title = st.text_input('Movie title', 'Life of Brian')
+st.write('The current movie title is', title)
 
 characterName = "아델"
 urlString_ocid = "https://open.api.nexon.com/maplestory/v1/id?character_name=" + characterName
