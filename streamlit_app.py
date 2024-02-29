@@ -6,7 +6,7 @@ import requests
 from datetime import datetime,timedelta
 
 """
-yunu
+#yunu
 """
 api_key = st.secrets['NEXON_API_KEY']
 headers = {
