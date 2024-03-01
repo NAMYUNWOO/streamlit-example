@@ -111,7 +111,7 @@ text = alt.Chart(source).mark_text(dx=-15, dy=3, color='white').encode(
 )
 
 
-st.altair_chart(bars + text, use_container_width=True)
+st.altair_chart(bars , use_container_width=True) #+ text
 #st.write(charInfo1)
 #st.write(charInfo2)
 
